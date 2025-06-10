@@ -9,11 +9,10 @@ export const sanitizeInput = (input) => {
   if (typeof input !== 'string') return ''
 
   return input
-    .trim()
-    .replace(/[<>]/g, '') // Remove potential HTML tags
-    .replace(/javascript:/gi, '') // Remove javascript: protocol
-    .replace(/on\w+=/gi, '') // Remove event handlers
-    .slice(0, 500) // Limit length to prevent abuse
+    // .trim()
+    // .replace(/[<>]/g, '') // Remove potential HTML tags
+    // .replace(/javascript:/gi, '') // Remove javascript: protocol
+    //.replace(/on\w+=/gi, '') // Remove event handlers
 }
 
 /**

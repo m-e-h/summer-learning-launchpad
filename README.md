@@ -2,6 +2,8 @@
 
 An interactive educational web application designed to help children prepare for 3rd grade through engaging activities in Math, Reading, Science, and Social Studies.
 
+![image](https://github.com/user-attachments/assets/8519769c-a77c-4fce-8de2-ad18904b1356)
+
 ## Features
 
 ### 📚 **Subject Areas**

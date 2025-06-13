@@ -3,16 +3,19 @@ import { Card, Button, LoadingSpinner, SecureInput } from '../ui'
 import { callGemini } from '../../services/geminiApi'
 
 const ScienceExplorer = () => {
-  const planets = useMemo(() => [
-    'Mercury',
-    'Venus',
-    'Earth',
-    'Mars',
-    'Jupiter',
-    'Saturn',
-    'Uranus',
-    'Neptune'
-  ], [])
+  const planets = useMemo(
+    () => [
+      'Mercury',
+      'Venus',
+      'Earth',
+      'Mars',
+      'Jupiter',
+      'Saturn',
+      'Uranus',
+      'Neptune'
+    ],
+    []
+  )
   const [shuffledPlanets, setShuffledPlanets] = useState([])
   const [orderedPlanets, setOrderedPlanets] = useState(
     Array(planets.length).fill(null)
@@ -61,7 +64,9 @@ const ScienceExplorer = () => {
       }
     } else if (source === 'ordered') {
       // Find and remove from ordered planets
-      const planetIndex = newOrderedPlanets.findIndex((p, i) => p === planet && i !== index)
+      const planetIndex = newOrderedPlanets.findIndex(
+        (p, i) => p === planet && i !== index
+      )
       if (planetIndex > -1) {
         newOrderedPlanets[planetIndex] = null
       }
@@ -125,7 +130,8 @@ const ScienceExplorer = () => {
         Our Solar System
       </h3>
       <p className='text-center text-gray-600 mb-6'>
-        Drag the planets into the correct order from the sun. Click placed planets to move them back.
+        Drag the planets into the correct order from the sun. Click placed
+        planets to move them back.
       </p>
 
       <div className='flex flex-wrap justify-center items-center gap-4 mb-8'>

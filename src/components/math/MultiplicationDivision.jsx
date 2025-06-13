@@ -54,7 +54,7 @@ const MultiplicationDivision = () => {
     setWordProblemFeedback('')
     setUserWordProblemAnswer('')
     const prompt =
-      'Generate a simple one-step multiplication or division word problem for an 8-year-old. The answer must be a whole number. Provide the problem and the numeric answer.'
+      'Generate a simple one-step multiplication or division word problem for an 8-year-old. The answer must be a whole number.'
     const schema = {
       type: 'OBJECT',
       properties: {

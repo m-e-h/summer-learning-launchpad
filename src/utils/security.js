@@ -5,14 +5,13 @@
  * @param {string} input - The user input to sanitize
  * @returns {string} - Sanitized input
  */
-export const sanitizeInput = (input) => {
+export const sanitizeInput = input => {
   if (typeof input !== 'string') return ''
 
   return input
-    // .trim()
-    // .replace(/[<>]/g, '') // Remove potential HTML tags
-    // .replace(/javascript:/gi, '') // Remove javascript: protocol
-    //.replace(/on\w+=/gi, '') // Remove event handlers
+    .replace(/[<>]/g, '') // Remove potential HTML tags
+    .replace(/javascript:/gi, '') // Remove javascript: protocol
+    .replace(/on\w+=/gi, '') // Remove event handlers
 }
 
 /**
@@ -20,12 +19,12 @@ export const sanitizeInput = (input) => {
  * @param {string} input - The input to validate
  * @returns {boolean} - Whether the input is safe
  */
-export const isValidEducationalInput = (input) => {
+export const isValidEducationalInput = input => {
   if (!input || typeof input !== 'string') return false
 
   // Allow letters, numbers, spaces, basic punctuation, and common educational symbols
   const safePattern = /^[a-zA-Z0-9\s.,!?'"()\-+÷×=:/]+$/
-  return safePattern.test(input) && input.length <= 500
+  return safePattern.test(input) && input.length <= 620
 }
 
 /**
@@ -33,11 +32,15 @@ export const isValidEducationalInput = (input) => {
  * @param {string} apiKey - The API key to validate
  * @returns {boolean} - Whether the API key format is valid
  */
-export const isValidApiKey = (apiKey) => {
+export const isValidApiKey = apiKey => {
   if (!apiKey || typeof apiKey !== 'string') return false
 
   // Basic validation - should be a reasonable length and contain alphanumeric characters
-  return apiKey.length >= 20 && apiKey.length <= 100 && /^[a-zA-Z0-9_-]+$/.test(apiKey)
+  return (
+    apiKey.length >= 20 &&
+    apiKey.length <= 100 &&
+    /^[a-zA-Z0-9_-]+$/.test(apiKey)
+  )
 }
 
 /**
@@ -47,9 +50,11 @@ export const isValidApiKey = (apiKey) => {
 export const createSafeErrorMessage = () => {
   // Never expose internal error details to users
   const safeMessages = {
-    'API call failed': 'Unable to connect to our learning service. Please try again.',
+    'API call failed':
+      'Unable to connect to our learning service. Please try again.',
     'Invalid response': 'Received an unexpected response. Please try again.',
-    'Network error': 'Network connection issue. Please check your internet connection.',
+    'Network error':
+      'Network connection issue. Please check your internet connection.',
     'Rate limit': 'Too many requests. Please wait a moment before trying again.'
   }
 
@@ -61,13 +66,14 @@ export const createSafeErrorMessage = () => {
  * Rate limiter for API calls
  */
 class RateLimiter {
-  constructor(maxRequests = 10, windowMs = 60000) { // 10 requests per minute
+  constructor (maxRequests = 10, windowMs = 60000) {
+    // 10 requests per minute
     this.maxRequests = maxRequests
     this.windowMs = windowMs
     this.requests = []
   }
 
-  canMakeRequest() {
+  canMakeRequest () {
     const now = Date.now()
 
     // Remove old requests outside the window
@@ -82,7 +88,7 @@ class RateLimiter {
     return false
   }
 
-  getTimeUntilReset() {
+  getTimeUntilReset () {
     if (this.requests.length === 0) return 0
 
     const oldestRequest = Math.min(...this.requests)

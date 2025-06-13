@@ -61,7 +61,10 @@ const GrammarPower = () => {
       <div className='p-4 bg-gray-100 rounded-lg text-2xl text-center'>
         {currentSentence.text.split(' ').map((word, i) => {
           const cleanWord = word.replace('.', '')
-                     const isIdentifiable = Object.prototype.hasOwnProperty.call(currentSentence.words, cleanWord)
+          const isIdentifiable = Object.prototype.hasOwnProperty.call(
+            currentSentence.words,
+            cleanWord
+          )
           return (
             <span key={i} className='mr-2'>
               <span
